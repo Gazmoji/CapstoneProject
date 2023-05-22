@@ -1,0 +1,73 @@
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: "Games", sans-serif;
+}
+
+.title {
+  font-family: "Games", sans-serif;
+  font-weight: bold;
+  font-size: 70px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.placement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 60px;
+  margin-top: 60px;
+}
+
+.placementTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+.button:active {
+  background-color: #3e8e41;
+}
+
+body {
+  background-image: url("https://i.pinimg.com/originals/76/aa/24/76aa24bf1e433a13444c18c5df7b839b.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.placementButton {
+  align-items: right;
+}
+
+.buttonAudio {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.buttonAudio:hover {
+  background-color: #45a049;
+}
+
+.buttonAudio:active {
+  background-color: #3e8e41;
+}
