@@ -18,6 +18,7 @@
   font-family: "Games", sans-serif;
   font-weight: bold;
   font-size: 70px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .placement {
@@ -45,8 +46,28 @@
 }
 
 body {
-  background-image: url("https://img.freepik.com/premium-photo/video-game-background-landscape-with-mountains-forests-16-bit-pixels-retro-video-arcade-game-nature-location-with-pixel-art-mountain-hills-snow-peaks-sky-clouds-trees-grass-lake_685067-3752.jpg?w=2000");
+  background-image: url("https://i.pinimg.com/originals/76/aa/24/76aa24bf1e433a13444c18c5df7b839b.gif");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+}
+
+.placementButton {
+  align-items: right;
+}
+
+.buttonAudio {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.buttonAudio:hover {
+  background-color: #45a049;
+}
+
+.buttonAudio:active {
+  background-color: #3e8e41;
 }
