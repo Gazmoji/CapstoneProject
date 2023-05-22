@@ -71,3 +71,14 @@ body {
 .buttonAudio:active {
   background-color: #3e8e41;
 }
+
+#userTextBox {
+  width: 1000px;
+  height: 100px;
+  border-radius: 10px;
+  font-size: 50px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #000000;
+  font-family: "Games", sans-serif;
+}
