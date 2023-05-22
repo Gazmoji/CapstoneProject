@@ -22,12 +22,18 @@ function Leaderboard() {
     fetchLeaderboard();
   }, []);
 
+  useEffect(() => {
+    console.log(leaderboard);
+  }, [leaderboard]);
+
   return (
     <>
       <button className="button" onClick={returnBack}>
         Return
       </button>
-      <h3 className="title">Top Scores</h3>
+      <div className="placement">
+        <h3 className="title">Top Scores</h3>
+      </div>
       <ul>
         {leaderboard.map((item) => (
           <li key={item.id}>
