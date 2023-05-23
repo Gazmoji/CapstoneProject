@@ -16,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/newgame" element={<NewGame />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/game" element={<BeginGame />} />
+        <Route path="/first-stage" element={<FirstStage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
