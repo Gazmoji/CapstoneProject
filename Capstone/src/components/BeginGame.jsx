@@ -37,7 +37,7 @@ function BeginGame() {
         </p>
       </div>
         {showNextButton && (
-          <button className='nextButton'>
+          <button className='nextButton' onClick={beginGame}>
             Begin
           </button>
         )}
