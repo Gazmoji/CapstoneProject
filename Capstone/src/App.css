@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .button {
   display: inline-block;
   padding: 10px 20px;
@@ -49,6 +51,7 @@ body {
   background-image: url("https://i.pinimg.com/originals/76/aa/24/76aa24bf1e433a13444c18c5df7b839b.gif");
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 
 .placementButton {
@@ -81,4 +84,42 @@ body {
   color: #ffffff;
   background-color: #000000;
   font-family: "Games", sans-serif;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.dialogBox {
+  display: inline-block;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.animatedText {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing;
+  animation-duration: 1.5s;
+  animation-timing-function: steps(30, end);
+  animation-fill-mode: forwards;
+  cursor: pointer;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 function NewGame() {
+  document.body.className = "background"
   const navigate = useNavigate();
 
   const returnBack = () => {
