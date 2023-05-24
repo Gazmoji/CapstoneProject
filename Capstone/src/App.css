@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 .button {
   display: inline-block;
@@ -97,12 +97,12 @@ body {
 
 .dialogBox {
   display: inline-block;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   background-color: #f1f1f1;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #000000;
-  margin: 0 auto;
+  margin-top: 150px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -119,15 +119,19 @@ body {
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .nextButton {
   background-color: #000000;
-  color:#fff;
+  color: #fff;
   font-size: 20px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
@@ -144,3 +148,23 @@ body {
   background-color: #3e8e41;
 }
 
+.error {
+  text-align: center;
+  font-family: "Games", sans-serif;
+  color: red;
+  font-size: 30px;
+}
+
+.container {
+  transition: opacity 1s;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.disable-click {
+  pointer-events: none;
+}

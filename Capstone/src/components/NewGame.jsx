@@ -1,15 +1,29 @@
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function NewGame() {
-  document.body.className = "background"
+  document.body.className = "background";
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const returnBack = () => {
     navigate("/");
   };
+
   const beginAdventure = () => {
-    navigate("/game");
+    if (username.trim() === "") {
+      setErrorMessage("Please enter a username");
+    } else {
+      navigate("/game");
+    }
   };
+
+  const handleInputChange = (event) => {
+    setUsername(event.target.value);
+    setErrorMessage("");
+  };
+
   return (
     <>
       <button className="button" onClick={returnBack}>
@@ -24,8 +38,11 @@ function NewGame() {
           type="text"
           name="Username"
           placeholder="Enter Username"
+          value={username}
+          onChange={handleInputChange}
         />
       </div>
+      {errorMessage && <p className="error">{errorMessage}</p>}
       <div className="placement">
         <button className="button" onClick={beginAdventure}>
           Begin Adventure

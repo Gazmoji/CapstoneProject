@@ -1,15 +1,47 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 
 function BeginGame() {
   const navigate = useNavigate();
 
-  const [lineIndex, setLineIndex] = useState(0)
+  const [lineIndex, setLineIndex] = useState(0);
+  const [generatedText, setGeneratedText] = useState("");
+  const [audioEnabled, setAudioEnabled] = useState(true);
+  const [isFading, setIsFading] = useState(false);
+  const [isImageFading, setIsImageFading] = useState(false);
+  const [isClickable, setIsClickable] = useState(true);
+
+  useEffect(() => {
+    const audio = new Audio(new URL("./Forest.mp3", import.meta.url));
+    audio.loop = true;
+
+    if (audioEnabled) {
+      audio.play().catch((error) => {
+        console.error("Failed to play audio:", error);
+      });
+    } else {
+      audio.pause();
+    }
+
+    return () => {
+      audio.pause();
+    };
+  }, [audioEnabled]);
+
+  const toggleAudio = () => {
+    setAudioEnabled((prevEnabled) => !prevEnabled);
+  };
 
   const beginGame = () => {
-    navigate("/first-stage")
-  }
+    setIsFading(true);
+    setIsImageFading(true);
+    setTimeout(() => {
+      setIsFading(false);
+      setGeneratedText("");
+      generateText(secondLinesOfText[0]);
+      setLineIndex(linesOfText.length); // Start at the index where secondLinesOfText begins
+    }, 1000); // Adjust the duration of the fade effect (in milliseconds)
+  };
 
   const linesOfText = [
     "You awaken in a mysterious forest unsure of how you arrived there, scared and lost.",
@@ -115,27 +147,122 @@ function BeginGame() {
     "That's when you noticed there was a spaceship behind you. He was actually chasing you into space.",
   ];
 
+  const generateText = (line) => {
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= line.length) {
+        setGeneratedText(line.substring(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 40); // Adjust the interval speed as needed
+  };
+
   const handleClick = () => {
     if (lineIndex < linesOfText.length - 1) {
       setLineIndex(lineIndex + 1);
+      setGeneratedText("");
+    } else if (lineIndex === linesOfText.length - 1) {
+      setGeneratedText("");
+      generateText(secondLinesOfText[0]);
+      setLineIndex(lineIndex + 1);
+    } else if (lineIndex === linesOfText.length) {
+      if (lineIndex < linesOfText.length + secondLinesOfText.length) {
+        setGeneratedText("");
+        generateText(secondLinesOfText[lineIndex - linesOfText.length]);
+        setLineIndex(lineIndex + 1);
+      } else {
+        beginGame();
+      }
+    } else if (
+      lineIndex > linesOfText.length &&
+      lineIndex < linesOfText.length + secondLinesOfText.length
+    ) {
+      setGeneratedText("");
+      generateText(secondLinesOfText[lineIndex - linesOfText.length]);
+      setLineIndex(lineIndex + 1);
+    } else {
+      beginGame();
     }
   };
 
-  const showNextButton = lineIndex === linesOfText.length - 1
+  useEffect(() => {
+    if (lineIndex === linesOfText.length - 1) {
+      setIsClickable(true);
+    } else {
+      setIsClickable(false);
+    }
+    if (lineIndex < linesOfText.length) {
+      setGeneratedText("");
+      generateText(linesOfText[lineIndex]);
+    } else if (lineIndex === linesOfText.length) {
+      setGeneratedText("");
+      generateText(secondLinesOfText[0]);
+    } else if (
+      lineIndex > linesOfText.length &&
+      lineIndex < linesOfText.length + secondLinesOfText.length
+    ) {
+      setGeneratedText("");
+      generateText(secondLinesOfText[lineIndex - linesOfText.length]);
+    }
+  }, [lineIndex]);
 
   return (
-    <div className="container">
-      <div className="dialogBox">
-        <p className="animatedText" onClick={handleClick}>
-          {linesOfText[lineIndex]}
-        </p>
+    <>
+      <div className="placementButton">
+        <button className="buttonAudio" onClick={toggleAudio}>
+          {audioEnabled ? (
+            <img
+              src="https://www.freeiconspng.com/uploads/sound-off-button-icon-17.png"
+              alt="Disable Audio"
+              width="42px"
+            />
+          ) : (
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/17/17533.png"
+              alt="Enable Audio"
+              width="42px"
+            />
+          )}
+        </button>
       </div>
-        {showNextButton && (
-          <button className='nextButton' onClick={beginGame}>
+      <div
+        className={`container${isFading ? " fade-out" : ""}`}
+        style={{
+          backgroundImage: isImageFading
+            ? "url(https://media.tenor.com/9WBEzfL3eg4AAAAC/video-game-cabin.gif)" // Replace with the path to your new image
+            : "none", // Replace with the path to your original image
+        }}
+      >
+        <div className="dialogBox">
+          {lineIndex > 0 ? (
+            <p
+              className={`animatedText${
+                lineIndex === linesOfText.length - 1 ? " disable-click" : ""
+              }`}
+              onClick={handleClick}
+            >
+              {lineIndex < linesOfText.length
+                ? linesOfText[lineIndex].slice(0, generatedText.length)
+                : secondLinesOfText[lineIndex - linesOfText.length].slice(
+                    0,
+                    generatedText.length
+                  )}
+            </p>
+          ) : (
+            <p className="animatedText" onClick={handleClick}>
+              {generatedText}
+            </p>
+          )}
+        </div>
+        {lineIndex === linesOfText.length - 1 && (
+          <button className="nextButton" onClick={beginGame}>
             Begin
           </button>
         )}
-    </div>
+      </div>
+    </>
   );
 }
 

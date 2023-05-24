@@ -27,7 +27,9 @@ function Leaderboard() {
       <button className="button" onClick={returnBack}>
         Return
       </button>
-      <h3 className="title">Top Scores</h3>
+      <div className="placementTitle">
+        <h3 className="title">Top Scores</h3>
+      </div>
       <ul>
         {leaderboard.map((item) => (
           <li key={item.id}>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function Homepage() {
   const navigate = useNavigate();
-  const [audioEnabled, setAudioEnabled] = useState(false);
+  const [audioEnabled, setAudioEnabled] = useState(true); // Modified initial state
 
   const newGame = () => {
     navigate("/newgame");
