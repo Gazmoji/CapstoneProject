@@ -1,22 +1,15 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-
-function BeginGame() {
-  const [lineIndex, setLineIndex] = useState(0);
-=======
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 
 function BeginGame() {
   const navigate = useNavigate();
 
-  const [lineIndex, setLineIndex] = useState(0)
->>>>>>> b098426b4c4954d06021995693960a162ec22fd4
+  const [lineIndex, setLineIndex] = useState(0);
+  const [generatedText, setGeneratedText] = useState("");
 
   const beginGame = () => {
-    navigate("/first-stage")
-  }
+    navigate("/first-stage");
+  };
 
   const linesOfText = [
     "You awaken in a mysterious forest unsure of how you arrived there, scared and lost.",
@@ -122,26 +115,48 @@ function BeginGame() {
     "That's when you noticed there was a spaceship behind you. He was actually chasing you into space.",
   ];
 
+  const generateText = (line) => {
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= line.length) {
+        setGeneratedText(line.substring(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 40); // Adjust the interval speed as needed
+  };
+
   const handleClick = () => {
     if (lineIndex < linesOfText.length - 1) {
       setLineIndex(lineIndex + 1);
+      setGeneratedText("");
+    } else {
+      beginGame();
     }
   };
 
-  const showNextButton = lineIndex === linesOfText.length - 1
+  useEffect(() => {
+    if (lineIndex < linesOfText.length) {
+      setGeneratedText("");
+      generateText(linesOfText[lineIndex]);
+    }
+  }, [lineIndex]);
 
   return (
     <div className="container">
       <div className="dialogBox">
         <p className="animatedText" onClick={handleClick}>
-          {linesOfText[lineIndex]}
+          {lineIndex > 0
+            ? linesOfText[lineIndex].slice(0, generatedText.length)
+            : generatedText}
         </p>
       </div>
-        {showNextButton && (
-          <button className='nextButton' onClick={beginGame}>
-            Begin
-          </button>
-        )}
+      {lineIndex === linesOfText.length - 1 && (
+        <button className="nextButton" onClick={beginGame}>
+          Begin
+        </button>
+      )}
     </div>
   );
 }
