@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-
-function BeginGame() {
-  const [lineIndex, setLineIndex] = useState(0);
-=======
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +6,6 @@ function BeginGame() {
   const navigate = useNavigate();
 
   const [lineIndex, setLineIndex] = useState(0)
->>>>>>> b098426b4c4954d06021995693960a162ec22fd4
 
   const beginGame = () => {
     navigate("/first-stage")

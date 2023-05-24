@@ -1,0 +1,32 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+.canvasWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    font-family: 'Orbitron', sans-serif;
+}
+
+canvas {
+    background-color: #555;
+    border-radius: 5px;
+    display: flex;
+}
+
+.snakeButton {
+    color: white;
+    background-color: #333;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #555;
+    font-size: 20px;
+    cursor: pointer
+}
+
+.gameOver {
+    color: Red;
+    font-size: 2em;
+    
+}
