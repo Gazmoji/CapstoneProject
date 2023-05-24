@@ -157,8 +157,14 @@ body {
 
 .container {
   transition: opacity 1s;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .fade-out {
   opacity: 0;
+}
+
+.disable-click {
+  pointer-events: none;
 }

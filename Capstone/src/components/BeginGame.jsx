@@ -8,6 +8,8 @@ function BeginGame() {
   const [generatedText, setGeneratedText] = useState("");
   const [audioEnabled, setAudioEnabled] = useState(true);
   const [isFading, setIsFading] = useState(false);
+  const [isImageFading, setIsImageFading] = useState(false);
+  const [isClickable, setIsClickable] = useState(true);
 
   useEffect(() => {
     const audio = new Audio(new URL("./Forest.mp3", import.meta.url));
@@ -32,8 +34,12 @@ function BeginGame() {
 
   const beginGame = () => {
     setIsFading(true);
+    setIsImageFading(true);
     setTimeout(() => {
       setIsFading(false);
+      setGeneratedText("");
+      generateText(secondLinesOfText[0]);
+      setLineIndex(linesOfText.length); // Start at the index where secondLinesOfText begins
     }, 1000); // Adjust the duration of the fade effect (in milliseconds)
   };
 
@@ -182,6 +188,11 @@ function BeginGame() {
   };
 
   useEffect(() => {
+    if (lineIndex === linesOfText.length - 1) {
+      setIsClickable(true);
+    } else {
+      setIsClickable(false);
+    }
     if (lineIndex < linesOfText.length) {
       setGeneratedText("");
       generateText(linesOfText[lineIndex]);
@@ -216,18 +227,34 @@ function BeginGame() {
           )}
         </button>
       </div>
-      <div className={`container${isFading ? " fade-out" : ""}`}>
+      <div
+        className={`container${isFading ? " fade-out" : ""}`}
+        style={{
+          backgroundImage: isImageFading
+            ? "url(https://media.tenor.com/9WBEzfL3eg4AAAAC/video-game-cabin.gif)" // Replace with the path to your new image
+            : "none", // Replace with the path to your original image
+        }}
+      >
         <div className="dialogBox">
-          <p className="animatedText" onClick={handleClick}>
-            {lineIndex > 0
-              ? lineIndex < linesOfText.length
+          {lineIndex > 0 ? (
+            <p
+              className={`animatedText${
+                lineIndex === linesOfText.length - 1 ? " disable-click" : ""
+              }`}
+              onClick={handleClick}
+            >
+              {lineIndex < linesOfText.length
                 ? linesOfText[lineIndex].slice(0, generatedText.length)
                 : secondLinesOfText[lineIndex - linesOfText.length].slice(
                     0,
                     generatedText.length
-                  )
-              : generatedText}
-          </p>
+                  )}
+            </p>
+          ) : (
+            <p className="animatedText" onClick={handleClick}>
+              {generatedText}
+            </p>
+          )}
         </div>
         {lineIndex === linesOfText.length - 1 && (
           <button className="nextButton" onClick={beginGame}>
