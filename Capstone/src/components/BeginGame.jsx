@@ -210,23 +210,6 @@ function BeginGame() {
 
   return (
     <>
-      <div className="placementButton">
-        <button className="buttonAudio" onClick={toggleAudio}>
-          {audioEnabled ? (
-            <img
-              src="https://www.freeiconspng.com/uploads/sound-off-button-icon-17.png"
-              alt="Disable Audio"
-              width="42px"
-            />
-          ) : (
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/17/17533.png"
-              alt="Enable Audio"
-              width="42px"
-            />
-          )}
-        </button>
-      </div>
       <div
         className={`container${isFading ? " fade-out" : ""}`}
         style={{
@@ -235,6 +218,23 @@ function BeginGame() {
             : "none", // Replace with the path to your original image
         }}
       >
+        <div className="placementButton">
+          <button className="buttonAudio" onClick={toggleAudio}>
+            {audioEnabled ? (
+              <img
+                src="https://www.freeiconspng.com/uploads/sound-off-button-icon-17.png"
+                alt="Disable Audio"
+                width="42px"
+              />
+            ) : (
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/17/17533.png"
+                alt="Enable Audio"
+                width="42px"
+              />
+            )}
+          </button>
+        </div>
         <div className="dialogBox">
           {lineIndex > 0 ? (
             <p
