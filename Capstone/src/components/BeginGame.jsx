@@ -6,9 +6,35 @@ function BeginGame() {
 
   const [lineIndex, setLineIndex] = useState(0);
   const [generatedText, setGeneratedText] = useState("");
+  const [audioEnabled, setAudioEnabled] = useState(true);
+  const [isFading, setIsFading] = useState(false);
+
+  useEffect(() => {
+    const audio = new Audio(new URL("./Forest.mp3", import.meta.url));
+    audio.loop = true;
+
+    if (audioEnabled) {
+      audio.play().catch((error) => {
+        console.error("Failed to play audio:", error);
+      });
+    } else {
+      audio.pause();
+    }
+
+    return () => {
+      audio.pause();
+    };
+  }, [audioEnabled]);
+
+  const toggleAudio = () => {
+    setAudioEnabled((prevEnabled) => !prevEnabled);
+  };
 
   const beginGame = () => {
-    navigate("/first-stage");
+    setIsFading(true);
+    setTimeout(() => {
+      setIsFading(false);
+    }, 1000); // Adjust the duration of the fade effect (in milliseconds)
   };
 
   const linesOfText = [
@@ -131,6 +157,25 @@ function BeginGame() {
     if (lineIndex < linesOfText.length - 1) {
       setLineIndex(lineIndex + 1);
       setGeneratedText("");
+    } else if (lineIndex === linesOfText.length - 1) {
+      setGeneratedText("");
+      generateText(secondLinesOfText[0]);
+      setLineIndex(lineIndex + 1);
+    } else if (lineIndex === linesOfText.length) {
+      if (lineIndex < linesOfText.length + secondLinesOfText.length) {
+        setGeneratedText("");
+        generateText(secondLinesOfText[lineIndex - linesOfText.length]);
+        setLineIndex(lineIndex + 1);
+      } else {
+        beginGame();
+      }
+    } else if (
+      lineIndex > linesOfText.length &&
+      lineIndex < linesOfText.length + secondLinesOfText.length
+    ) {
+      setGeneratedText("");
+      generateText(secondLinesOfText[lineIndex - linesOfText.length]);
+      setLineIndex(lineIndex + 1);
     } else {
       beginGame();
     }
@@ -140,24 +185,57 @@ function BeginGame() {
     if (lineIndex < linesOfText.length) {
       setGeneratedText("");
       generateText(linesOfText[lineIndex]);
+    } else if (lineIndex === linesOfText.length) {
+      setGeneratedText("");
+      generateText(secondLinesOfText[0]);
+    } else if (
+      lineIndex > linesOfText.length &&
+      lineIndex < linesOfText.length + secondLinesOfText.length
+    ) {
+      setGeneratedText("");
+      generateText(secondLinesOfText[lineIndex - linesOfText.length]);
     }
   }, [lineIndex]);
 
   return (
-    <div className="container">
-      <div className="dialogBox">
-        <p className="animatedText" onClick={handleClick}>
-          {lineIndex > 0
-            ? linesOfText[lineIndex].slice(0, generatedText.length)
-            : generatedText}
-        </p>
-      </div>
-      {lineIndex === linesOfText.length - 1 && (
-        <button className="nextButton" onClick={beginGame}>
-          Begin
+    <>
+      <div className="placementButton">
+        <button className="buttonAudio" onClick={toggleAudio}>
+          {audioEnabled ? (
+            <img
+              src="https://www.freeiconspng.com/uploads/sound-off-button-icon-17.png"
+              alt="Disable Audio"
+              width="42px"
+            />
+          ) : (
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/17/17533.png"
+              alt="Enable Audio"
+              width="42px"
+            />
+          )}
         </button>
-      )}
-    </div>
+      </div>
+      <div className={`container${isFading ? " fade-out" : ""}`}>
+        <div className="dialogBox">
+          <p className="animatedText" onClick={handleClick}>
+            {lineIndex > 0
+              ? lineIndex < linesOfText.length
+                ? linesOfText[lineIndex].slice(0, generatedText.length)
+                : secondLinesOfText[lineIndex - linesOfText.length].slice(
+                    0,
+                    generatedText.length
+                  )
+              : generatedText}
+          </p>
+        </div>
+        {lineIndex === linesOfText.length - 1 && (
+          <button className="nextButton" onClick={beginGame}>
+            Begin
+          </button>
+        )}
+      </div>
+    </>
   );
 }
 

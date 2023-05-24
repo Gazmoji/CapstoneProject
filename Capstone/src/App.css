@@ -102,7 +102,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #000000;
-  margin: 0 auto;
+  margin-top: 150px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -153,4 +153,12 @@ body {
   font-family: "Games", sans-serif;
   color: red;
   font-size: 30px;
+}
+
+.container {
+  transition: opacity 1s;
+}
+
+.fade-out {
+  opacity: 0;
 }
