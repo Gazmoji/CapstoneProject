@@ -168,3 +168,15 @@ body {
 .disable-click {
   pointer-events: none;
 }
+
+ul {
+  font-size: 50px;
+  list-style-type: none;
+  text-align: center;
+  font-family: "Games", sans-serif;
+}
+
+.optionsContainer {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
