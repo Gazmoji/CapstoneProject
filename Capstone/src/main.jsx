@@ -9,6 +9,7 @@ import Leaderboard from "./components/Leaderboard.jsx";
 import BeginGame from "./components/BeginGame.jsx";
 import SlidePuzzle from "./components/SlidePuzzle.jsx"
 import SnakeGame from "./components/snakeGame/SnakeGame.jsx";
+import LightsGame from "./components/lightsGame/LightsGame.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/game" element={<BeginGame />} />
         <Route path="/slider" element={<SlidePuzzle />} />
         <Route path="/snake" element={<SnakeGame />} />
+        <Route path="/lights" element={<LightsGame />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
