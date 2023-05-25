@@ -31,11 +31,13 @@ function Leaderboard() {
         <h3 className="title">Top Scores</h3>
       </div>
       <ul>
-        {leaderboard.map((item) => (
-          <li key={item.id}>
-            {item.name} - {item.ending} - {item.score}
-          </li>
-        ))}
+        <b>
+          {leaderboard.map((item) => (
+            <li key={item.id}>
+              {item.name} - {item.ending} - {item.score}
+            </li>
+          ))}
+        </b>
       </ul>
     </>
   );

@@ -11,6 +11,17 @@ function BeginGame() {
   const [isImageFading, setIsImageFading] = useState(false);
   const [isClickable, setIsClickable] = useState(true);
 
+  const option1 = "Option 1";
+  const option2 = "Option 2";
+
+  const handleOption1 = () => {
+    navigate("/ForestRoute");
+  };
+
+  const handleOption2 = () => {
+    navigate("/CabinRoute");
+  };
+
   useEffect(() => {
     const audio = new Audio(new URL("./Forest.mp3", import.meta.url));
     audio.loop = true;
@@ -155,6 +166,9 @@ function BeginGame() {
         currentIndex++;
       } else {
         clearInterval(interval);
+        if (line === secondLinesOfText[secondLinesOfText.length - 1]) {
+          setGeneratedText(line + "\n\n" + option1 + "\n\n" + option2);
+        }
       }
     }, 40); // Adjust the interval speed as needed
   };
@@ -168,16 +182,24 @@ function BeginGame() {
       generateText(secondLinesOfText[0]);
       setLineIndex(lineIndex + 1);
     } else if (lineIndex === linesOfText.length) {
-      if (lineIndex < linesOfText.length + secondLinesOfText.length) {
+      if (lineIndex < linesOfText.length + secondLinesOfText.length - 1) {
         setGeneratedText("");
         generateText(secondLinesOfText[lineIndex - linesOfText.length]);
         setLineIndex(lineIndex + 1);
       } else {
-        beginGame();
+        // Logic for handling the options
+        if (lineIndex === linesOfText.length + secondLinesOfText.length - 1) {
+          // Logic for handling the options
+          if (generatedText === option1) {
+            handleOption1();
+          } else if (generatedText === option2) {
+            handleOption2();
+          }
+        }
       }
     } else if (
       lineIndex > linesOfText.length &&
-      lineIndex < linesOfText.length + secondLinesOfText.length
+      lineIndex < linesOfText.length + secondLinesOfText.length - 1
     ) {
       setGeneratedText("");
       generateText(secondLinesOfText[lineIndex - linesOfText.length]);
@@ -235,11 +257,29 @@ function BeginGame() {
             )}
           </button>
         </div>
+
+        {lineIndex === linesOfText.length + secondLinesOfText.length - 1 && (
+          <>
+            <div className="optionsContainer">
+              <button className="nextButton" onClick={handleOption1}>
+                Continue into the Forest
+              </button>
+            </div>
+            <div className="optionsContainer">
+              <button className="nextButton" onClick={handleOption2}>
+                Check Out the Cabin
+              </button>
+            </div>
+          </>
+        )}
         <div className="dialogBox">
           {lineIndex > 0 ? (
             <p
               className={`animatedText${
-                lineIndex === linesOfText.length - 1 ? " disable-click" : ""
+                lineIndex === linesOfText.length - 1 ||
+                lineIndex === linesOfText.length + secondLinesOfText.length - 1
+                  ? " disable-click"
+                  : ""
               }`}
               onClick={handleClick}
             >
