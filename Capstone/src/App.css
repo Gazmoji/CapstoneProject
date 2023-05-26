@@ -180,3 +180,7 @@ ul {
   padding-bottom: 30px;
   margin-bottom: 30px;
 }
+
+.background-transition {
+  transition: background-image 1s ease-in-out;
+}
