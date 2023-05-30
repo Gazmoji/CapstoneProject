@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import titleImage from "./title.png";
+import "../styles/App.css";
 
 function Homepage() {
   const navigate = useNavigate();
@@ -58,7 +60,7 @@ function Homepage() {
         </button>
       </div>
       <div className="placementTitle">
-        <h2 className="title">Hello World</h2>
+        <img src={titleImage} alt="Title" width="500" />
       </div>
       <div className="placement">
         <button className="button" onClick={newGame}>

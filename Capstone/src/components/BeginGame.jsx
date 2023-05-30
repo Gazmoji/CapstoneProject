@@ -240,7 +240,7 @@ function BeginGame() {
             : "none", // Replace with the path to your original image
         }}
       >
-        <div className="placementButton">
+        <div className="placementButton2">
           <button className="buttonAudio" onClick={toggleAudio}>
             {audioEnabled ? (
               <img

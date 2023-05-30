@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage.jsx";
 import NewGame from "./components/NewGame.jsx";
@@ -12,6 +11,8 @@ import ForestRoute from "./components/ForestRoute.jsx";
 import SlidePuzzle from "./components/SlidePuzzle.jsx";
 import SnakeGame from "./components/snakeGame/SnakeGame.jsx";
 import LightsGame from "./components/lightsGame/LightsGame.jsx";
+import LeftRoute from "./components/LeftRoute.jsx";
+import RightRoute from "./components/RightRoute.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -23,6 +24,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/game" element={<BeginGame />} />
         <Route path="/ForestRoute" element={<ForestRoute />} />
         <Route path="/CabinRoute" element={<CabinRoute />} />
+        <Route path="/LeftRoute" element={<LeftRoute />} />
+        <Route path="/RightRoute" element={<RightRoute />} />
         <Route path="/slider" element={<SlidePuzzle />} />
         <Route path="/snake" element={<SnakeGame />} />
         <Route path="/lights" element={<LightsGame />} />

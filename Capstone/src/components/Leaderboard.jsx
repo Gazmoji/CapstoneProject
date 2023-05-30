@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/App.css";
 
 function Leaderboard() {
   const navigate = useNavigate();

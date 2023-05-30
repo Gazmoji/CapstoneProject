@@ -81,7 +81,7 @@ function CabinRoute() {
           : "url(https://media.tenor.com/9WBEzfL3eg4AAAAC/video-game-cabin.gif)", // Replace with the path to your original image
       }}
     >
-      <div className="placementButton">
+      <div className="placementButton2">
         <button
           className="buttonAudio"
           onClick={() => setAudioEnabled((prevEnabled) => !prevEnabled)}
