@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/App.css";
 
 function NewGame() {
   document.body.className = "background";
