@@ -21,7 +21,8 @@ function SnakeGame() {
   const [dir, setDir] = useState([0, -1])
   const [speed, setSpeed] = useState(null)
   const [gameOver, setGameOver] = useState(false)
-
+  const [applesCollected, setApplesCollected] = useState(0)
+  const [score, setScore] = useState(0)
   
   const startGame = () => {
     setSnake(SNAKE_START)
@@ -29,6 +30,8 @@ function SnakeGame() {
     setDir([0, -1])
     setSpeed(SPEED)
     setGameOver(false)
+    setApplesCollected(0)
+    setScore(0)
   }
   
   const endGame = () => {
@@ -63,6 +66,8 @@ function SnakeGame() {
         newApple = createApple();
       }
       setApple(newApple);
+      setApplesCollected(prev => prev + 1)
+      setScore(prev => prev + 100)
       return true
     }
     return false
@@ -75,6 +80,10 @@ function SnakeGame() {
     if (checkCollision(newSnakeHead)) endGame();
     if (!checkAppleCollision(snakeCopy)) snakeCopy.pop()
     setSnake(snakeCopy)
+
+    if (applesCollected === 20) {
+      endGame()
+    }
   }
   
   useEffect(() => {
@@ -91,6 +100,7 @@ function SnakeGame() {
   
   return (
     <div className='canvasWrapper' role = "button" tabIndex="0" onKeyDown={e => moveSnake(e)}>
+      <div className='score'>Score: {score}</div>
       <canvas
         style={{ border: '3px solid black' }}
         ref={canvasRef}

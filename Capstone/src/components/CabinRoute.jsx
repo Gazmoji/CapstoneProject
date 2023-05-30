@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CabinRoute() {
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -6,6 +7,13 @@ function CabinRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
+  const [showButton, setShowButton] = useState(false)
+
+  const navigate = useNavigate()
+
+  const unlockDoor = () => {
+    navigate("/slider")
+  }
 
   const cabinOption = [
     "You decide that going into the cabin couldn't hurt, there could be someone there to help.",
@@ -37,6 +45,9 @@ function CabinRoute() {
     if (lineIndex < cabinOption.length - 1) {
       setLineIndex(lineIndex + 1);
       setGeneratedText("");
+      setShowButton(false)
+    } else {
+      setShowButton(true)
     }
   };
 
@@ -108,6 +119,11 @@ function CabinRoute() {
           </p>
         </div>
       </div>
+
+            {showButton && (
+              <button className="nextButton" onClick={unlockDoor} >Try to Unlock Door</button>
+            )}
+
     </div>
   );
 }
