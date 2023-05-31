@@ -16,4 +16,9 @@
     border: none;
     padding: 3px;
     background-color: #fff;
+    cursor: pointer;
+}
+
+.backgroundCabin {
+    background-image: url("https://as1.ftcdn.net/v2/jpg/05/50/46/44/1000_F_550464425_V6RGtdUQjCBNzj9tOyeBtx8dB1bEMIn8.jpg");
 }

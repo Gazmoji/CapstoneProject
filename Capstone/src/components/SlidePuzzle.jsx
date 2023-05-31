@@ -1,9 +1,13 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import "../styles/slider.css"
 
 
 const getShuffledPuzzle = () => {
+    document.body.className = "backgroundCabin";
+
+
     const values = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   
     const rowOne = [],
@@ -131,11 +135,18 @@ const getShuffledPuzzle = () => {
       return emptySlot;
     };
   
-    const resetPuzzle = () => {
-      setComplete(false);
-      setPuzzle(getPuzzle());
-      setMoves(0);
-    };
+    const navigate = useNavigate()
+
+    const leaveCabin = () => {
+      navigate('/ForestRoute')
+    }
+
+
+    // const resetPuzzle = () => {
+    //   setComplete(false);
+    //   setPuzzle(getPuzzle());
+    //   setMoves(0);
+    // };
   
     return (
       <div className="sliderWrapper">
@@ -188,11 +199,9 @@ const getShuffledPuzzle = () => {
           <p>
             <button
               className='playButton'
-              onClick={() => {
-                resetPuzzle();
-              }}
+              onClick={leaveCabin}
             >
-              Play Again
+              Leave Cabin
             </button>
           </p>
         )}
