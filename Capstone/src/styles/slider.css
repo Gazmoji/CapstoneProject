@@ -1,24 +1,41 @@
-
 .sliderWrapper {
-    font-family: sans-serif;
-    text-align: center;
+  font-family: sans-serif;
+  text-align: center;
 }
 
 .moves {
-    color: #fff;
+  color: #fff;
 }
 
 .playButton {
-    color: #555;
-    font-size: 1em;
-    font-weight: bold;
-    border-radius: 3px;
-    border: none;
-    padding: 3px;
-    background-color: #fff;
-    cursor: pointer;
+  color: #555;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 3px;
+  border: none;
+  padding: 3px;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 .backgroundCabin {
-    background-image: url("https://as1.ftcdn.net/v2/jpg/05/50/46/44/1000_F_550464425_V6RGtdUQjCBNzj9tOyeBtx8dB1bEMIn8.jpg");
+  background-image: url("https://as1.ftcdn.net/v2/jpg/05/50/46/44/1000_F_550464425_V6RGtdUQjCBNzj9tOyeBtx8dB1bEMIn8.jpg");
+}
+
+.dialogBox2 {
+  display: inline-block;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  color: #000000;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  margin-left: 500px;
+  margin-right: 500px;
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000000;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
