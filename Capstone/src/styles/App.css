@@ -23,6 +23,15 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.GameOver {
+  font-family: "Games", sans-serif;
+  font-weight: bold;
+  font-size: 140px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: red;
+  text-align: center;
+}
+
 .placement {
   display: flex;
   justify-content: center;
@@ -30,6 +39,16 @@
   flex-direction: column;
   margin-bottom: 60px;
   margin-top: 60px;
+}
+
+.placement2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 60px;
+  margin-top: 60px;
+  color: white;
 }
 
 .placementTitle {
@@ -200,4 +219,20 @@ ul {
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
+}
+
+#gameoverGif {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameOverBackground {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg");
+}
+
+#buttonPlace {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

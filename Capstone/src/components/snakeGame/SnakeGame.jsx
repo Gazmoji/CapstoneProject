@@ -160,7 +160,7 @@ function SnakeGame() {
           )}
         </button>
       </div>
-      <div className="dialogBox2">
+      <div className="dialogBox3">
         Instructions: Gather your belongings (The Red Dots) without hitting the
         wall or yourself (The Green Line) Reach a score of 2000 to proceed. But
         be warned, you only have 3 attempts.

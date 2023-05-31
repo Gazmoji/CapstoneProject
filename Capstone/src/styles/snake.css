@@ -58,11 +58,11 @@ canvas {
   font-weight: bold;
 }
 
-.dialogBox2 {
+.dialogBox3 {
   display: inline-block;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff;
-  color: #000000;
+  background-color: #555;
+  color: #ffffff;
   padding: 10px;
   border-radius: 5px;
   display: flex;
