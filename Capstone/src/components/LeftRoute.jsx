@@ -6,6 +6,7 @@ function LeftRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
+  const [shouldPlayAudio, setShouldPlayAudio] = useState(false); // New state variable
 
   const leftPath = [
     "You decide to continue on the path that looks like your previous route.",
@@ -26,7 +27,11 @@ function LeftRoute() {
   useEffect(() => {
     generateText(leftPath[lineIndex]);
 
-    // Check if line index is greater than or equal to 8 and update the background image
+    if (lineIndex === 2) {
+      // Start playing audio on line 3
+      setShouldPlayAudio(true);
+    }
+
     if (lineIndex >= 5) {
       setIsImageFading(true);
     }
@@ -55,7 +60,7 @@ function LeftRoute() {
     const audio = new Audio(new URL("./ChasingMusic.mp3", import.meta.url));
     audio.loop = true;
 
-    if (audioEnabled) {
+    if (shouldPlayAudio && audioEnabled) {
       audio.play().catch((error) => {
         console.error("Failed to play audio:", error);
       });
@@ -66,7 +71,7 @@ function LeftRoute() {
     return () => {
       audio.pause();
     };
-  }, [audioEnabled]);
+  }, [shouldPlayAudio, audioEnabled]);
 
   return (
     <div

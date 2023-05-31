@@ -16,7 +16,25 @@ function NewGame() {
     if (username.trim() === "") {
       setErrorMessage("Please enter a username");
     } else {
-      navigate("/game");
+      // Make a POST request to add the username to the leaderboard
+      fetch("http://localhost:8080/leaderboard", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: username,
+          ending: "Incomplete",
+          score: 0,
+        }),
+      })
+        .then((response) => response.json())
+        .then((leaderboard) => {
+          navigate("/game");
+        })
+        .catch((error) => {
+          console.error("Error adding username to leaderboard:", error);
+        });
     }
   };
 
