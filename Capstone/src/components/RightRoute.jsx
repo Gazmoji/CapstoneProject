@@ -47,7 +47,7 @@ function RightRoute() {
   };
 
   useEffect(() => {
-    const audio = new Audio(new URL("./ChasingMusic.mp3", import.meta.url));
+    const audio = new Audio(new URL("./ScaryForest.mp3", import.meta.url));
     audio.loop = true;
 
     if (audioEnabled) {
@@ -68,8 +68,8 @@ function RightRoute() {
       className={`container${isFading ? " fade-out" : ""}`}
       style={{
         backgroundImage: isImageFading
-          ? "url(https://preview.redd.it/6g0zbuqorrk11.jpg?auto=webp&s=4bd8eb886c689283603f412478ddf3384e8c3ef3)" // Replace with the path to your new image
-          : "url(https://preview.redd.it/enchanted-forest-past-poem-and-prompt-in-comments-v0-7wj8gos7hv9a1.png?width=640&crop=smart&auto=webp&s=839fa1ee011c7bef845d0194af9bc71cf82b37e0)", // Replace with the path to your original image
+          ? "url(https://img.itch.zone/aW1hZ2UvNjMxMzc0LzMzNzEyMDkucG5n/original/eyVjcs.png)" // Replace with the path to your new image
+          : "url(https://cdna.artstation.com/p/assets/images/images/002/287/548/large/sandrine-pilloud-160404-i3gamejam-forest.jpg?1459797887)", // Replace with the path to your original image
       }}
     >
       <div className="placementButton2">
