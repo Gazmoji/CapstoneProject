@@ -22,7 +22,9 @@ function SnakeGame() {
   const [applesCollected, setApplesCollected] = useState(0);
   const [score, setScore] = useState(0);
   const [gameWon, setGameWon] = useState(false);
-  const [showNextButton, setShowNextButton] = useState(false);
+  const [showNextButton, setShowNextButton] = useState(true)
+  const [attempts, setAttempts] = useState(3)
+  const [firstAttempt, setFirstAttempt] = useState(true);
   const [audioEnabled, setAudioEnabled] = useState(true);
   const navigate = useNavigate();
 
@@ -45,26 +47,35 @@ function SnakeGame() {
   }, [audioEnabled]);
 
   const startGame = () => {
-    setSnake(SNAKE_START);
-    setApple(APPLE_START);
-    setDir([0, -1]);
-    setSpeed(SPEED);
-    setGameOver(false);
-    setApplesCollected(0);
-    setScore(0);
-  };
+    setSnake(SNAKE_START)
+    setApple(APPLE_START)
+    setDir([0, -1])
+    setSpeed(SPEED)
+    setGameOver(false)
+    setApplesCollected(0)
+    setScore(0)
 
+  }
+  
   const endGame = () => {
-    setSpeed(null);
-    setGameOver(true);
-  };
+    setSpeed(null)
+    setGameOver(true)
+    setAttempts(prevAttempts => prevAttempts - 1)
+  }
+  
+  useEffect(() => {
+    if (attempts === 0) {
+      navigate('/game-over')
+    } else if (attempts <= 2) {
+      setFirstAttempt(false)
+    }
+  }, [attempts])
 
-  const moveSnake = ({ keyCode }) =>
-    keyCode >= 37 && keyCode <= 40 && setDir(DIRECTIONS[keyCode]);
-
-  const createApple = () =>
-    apple.map((_, i) => Math.floor((Math.random() * CANVAS_SIZE[i]) / SCALE));
-
+  const moveSnake = ({ keyCode }) => keyCode >= 37 && keyCode <= 40 && setDir(DIRECTIONS[keyCode])
+  
+  const createApple = () => 
+    apple.map((_, i) => Math.floor(Math.random() * (CANVAS_SIZE[i]) / SCALE));
+  
   const checkCollision = (piece, snk = snake) => {
     if (
       piece[0] * SCALE >= CANVAS_SIZE[0] ||
@@ -134,6 +145,7 @@ function SnakeGame() {
       onKeyDown={(e) => moveSnake(e)}
     >
       <div className="score">Score: {score}</div>
+      <div className="attempts">Attempts Remaining: {attempts}</div>
       <canvas
         style={{ border: "3px solid black" }}
         ref={canvasRef}
@@ -174,9 +186,11 @@ function SnakeGame() {
           </button>
         </div>
       )}
-      <button className="snakeButton" onClick={startGame}>
-        Start Game
-      </button>
+      {firstAttempt ? (
+        <button className='snakeButton' onClick={startGame}>Start Game</button>
+      ) : (
+        <button className='snakeButton' onClick={startGame}>Try Again</button>
+      )}
     </div>
   );
 }
