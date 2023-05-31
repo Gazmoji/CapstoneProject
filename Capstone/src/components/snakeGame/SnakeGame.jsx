@@ -26,7 +26,9 @@ function SnakeGame() {
   const [applesCollected, setApplesCollected] = useState(0)
   const [score, setScore] = useState(0)
   const [gameWon, setGameWon] = useState(false)
-  const [showNextButton, setShowNextButton] = useState(false)
+  const [showNextButton, setShowNextButton] = useState(true)
+  const [attempts, setAttempts] = useState(3)
+  const [firstAttempt, setFirstAttempt] = useState(true)
   const navigate = useNavigate()
 
   const startGame = () => {
@@ -37,13 +39,23 @@ function SnakeGame() {
     setGameOver(false)
     setApplesCollected(0)
     setScore(0)
+
   }
   
   const endGame = () => {
     setSpeed(null)
     setGameOver(true)
+    setAttempts(prevAttempts => prevAttempts - 1)
   }
   
+  useEffect(() => {
+    if (attempts === 0) {
+      navigate('/game-over')
+    } else if (attempts <= 2) {
+      setFirstAttempt(false)
+    }
+  }, [attempts])
+
   const moveSnake = ({ keyCode }) => keyCode >= 37 && keyCode <= 40 && setDir(DIRECTIONS[keyCode])
   
   const createApple = () => 
@@ -113,20 +125,27 @@ function SnakeGame() {
   return (
     <div className='canvasWrapper' role = "button" tabIndex="0" onKeyDown={e => moveSnake(e)}>
       <div className='score'>Score: {score}</div>
+      <div className='attempts'>Attempts: {attempts}</div>
       <canvas
         style={{ border: '3px solid black' }}
         ref={canvasRef}
         width={`${CANVAS_SIZE[0]}px`}
         height={`${CANVAS_SIZE[1]}px`}
       />
-      {gameOver && !gameWon && <div className='gameOver'>GAME OVER</div>}
+      {gameOver && !gameWon && (<div className='gameOver'>
+        GAME OVER
+      </div>)}
       {gameWon && (
         <div className='gameWon'>
           <p>Congratulations!</p>
           <button className='nextButton' onClick={leaveCave}>Leave The Cave</button>
         </div>
       )}
-      <button className='snakeButton' onClick={startGame}>Start Game</button>
+      {firstAttempt ? (
+        <button className='snakeButton' onClick={startGame}>Start Game</button>
+      ) : (
+        <button className='snakeButton' onClick={startGame}>Try Again</button>
+      )}
     </div>
   )
 }
