@@ -1,49 +1,50 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap");
 
 .backgroundCave {
-    background-image: url("https://img.itch.zone/aW1hZ2UvNjMxMzc0LzMzNzEyMDkucG5n/original/eyVjcs.png");
+  background-image: url("https://img.itch.zone/aW1hZ2UvNjMxMzc0LzMzNzEyMDkucG5n/original/eyVjcs.png");
 }
 
 .canvasWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    font-family: 'Orbitron', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  font-family: "Orbitron", sans-serif;
 }
 
 canvas {
-    background-color: #333;
-    border-radius: 5px;
-    display: flex;
+  background-color: #333;
+  border-radius: 5px;
+  display: flex;
 }
 
 .snakeButton {
-    color: white;
-    background-color: #333;
-    padding: 5px;
-    border-radius: 5px;
-    border: 2px solid #555;
-    font-size: 20px;
-    cursor: pointer
+  color: white;
+  background-color: #333;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid #555;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 30px;
 }
 
 .gameOver {
-    color: Red;
-    font-size: 2em;
-    
+  color: Red;
+  font-size: 2em;
 }
 
 .score {
-    color: #fff;
-    font-size: 2em;
+  color: #fff;
+  font-size: 2em;
 }
 
 .gameWon {
-text-align: center;
+  text-align: center;
 }
 
+<<<<<<< HEAD
 .gameWon p{
     color: Green;
     background-color: #555;
@@ -60,3 +61,36 @@ text-align: center;
 .attempts {
     color: #fff;
 }
+=======
+.gameWon p {
+  color: Green;
+  background-color: #555;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 5px;
+  margin: 5px auto;
+  margin-bottom: 10px;
+  font-size: 2em;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+
+.dialogBox2 {
+  display: inline-block;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  color: #000000;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  margin-left: 500px;
+  margin-right: 500px;
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000000;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+>>>>>>> refs/remotes/origin/main
