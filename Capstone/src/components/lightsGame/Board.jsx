@@ -21,7 +21,7 @@ function Board(props) {
 
     )
 
-    const [ board, setBoard ] = useState({ grid: lightsGrid })
+    const [ board, setBoard ] = useState({ grid: lightsGrid, moves: 0 })
 
     const toggleLight = function(cellIndex) {
         let [ cellRowIndex, cellColIndex ] = cellIndex.split("")
@@ -35,7 +35,9 @@ function Board(props) {
                         ? row.map( (col, colIndex) => colIndex === cellColIndex ? !col : col)
                         : row
                         
-                    ))
+                    )
+                ),
+                moves: currSt.moves + 1,
             }
         ))
     }
@@ -74,6 +76,7 @@ function Board(props) {
 
   return (
     <div className='Board'>
+        <h2 className="movesh2">Moves: {board.moves / 5}</h2>
         {hasWon() ? <div className='Board-hasWon'>Congratulations!</div> : gridDisplay}
     </div>
   )

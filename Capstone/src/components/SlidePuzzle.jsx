@@ -187,6 +187,7 @@ const getShuffledPuzzle = () => {
         {complete && (
           <p>
             <button
+              className='playButton'
               onClick={() => {
                 resetPuzzle();
               }}
