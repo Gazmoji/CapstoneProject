@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import "../../styles/snake.css"
 import { useInterval } from './useInterval'
+import { useNavigate } from 'react-router-dom'
 import {
   CANVAS_SIZE,
   SNAKE_START,
@@ -15,6 +16,7 @@ import {
 
 
 function SnakeGame() {
+  document.body.className = "backgroundCave";
   const canvasRef = useRef(null)
   const [snake, setSnake] = useState(SNAKE_START)
   const [apple, setApple] = useState(APPLE_START)
@@ -23,7 +25,10 @@ function SnakeGame() {
   const [gameOver, setGameOver] = useState(false)
   const [applesCollected, setApplesCollected] = useState(0)
   const [score, setScore] = useState(0)
-  
+  const [gameWon, setGameWon] = useState(false)
+  const [showNextButton, setShowNextButton] = useState(false)
+  const navigate = useNavigate()
+
   const startGame = () => {
     setSnake(SNAKE_START)
     setApple(APPLE_START)
@@ -68,6 +73,9 @@ function SnakeGame() {
       setApple(newApple);
       setApplesCollected(prev => prev + 1)
       setScore(prev => prev + 100)
+      if (applesCollected === 19) {
+        setGameWon(true)
+      }
       return true
     }
     return false
@@ -98,6 +106,10 @@ function SnakeGame() {
   
   useInterval(() => gameLoop(), speed)
   
+  const leaveCave = () => {
+    navigate('/')
+  }
+
   return (
     <div className='canvasWrapper' role = "button" tabIndex="0" onKeyDown={e => moveSnake(e)}>
       <div className='score'>Score: {score}</div>
@@ -107,7 +119,13 @@ function SnakeGame() {
         width={`${CANVAS_SIZE[0]}px`}
         height={`${CANVAS_SIZE[1]}px`}
       />
-      {gameOver && <div className='gameOver'>GAME OVER</div>}
+      {gameOver && !gameWon && <div className='gameOver'>GAME OVER</div>}
+      {gameWon && (
+        <div className='gameWon'>
+          <p>Congratulations!</p>
+          <button className='nextButton' onClick={leaveCave}>Leave The Cave</button>
+        </div>
+      )}
       <button className='snakeButton' onClick={startGame}>Start Game</button>
     </div>
   )

@@ -1,6 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
+.backgroundCave {
+    background-image: url("https://img.itch.zone/aW1hZ2UvNjMxMzc0LzMzNzEyMDkucG5n/original/eyVjcs.png");
+}
+
 .canvasWrapper {
     display: flex;
     flex-direction: column;
@@ -10,7 +14,7 @@
 }
 
 canvas {
-    background-color: #555;
+    background-color: #333;
     border-radius: 5px;
     display: flex;
 }
@@ -34,4 +38,21 @@ canvas {
 .score {
     color: #fff;
     font-size: 2em;
+}
+
+.gameWon {
+text-align: center;
+}
+
+.gameWon p{
+    color: Green;
+    background-color: #555;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    margin: 5px auto;
+    margin-bottom: 10px;
+    font-size: 2em;
+    font-weight: bold;
 }

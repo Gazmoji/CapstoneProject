@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RightRoute() {
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -6,6 +7,9 @@ function RightRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
+  const [showNextButton, setShowNextButton] = useState(false)
+
+  const navigate = useNavigate()
 
   const rightPath = [
     "Throwing caution to the wind, you decide to go on the more dangerous looking path.",
@@ -21,10 +25,15 @@ function RightRoute() {
   useEffect(() => {
     generateText(rightPath[lineIndex]);
 
+    if (lineIndex >= rightPath.length - 1) {
+      setShowNextButton(true);
+    } else {
+      setShowNextButton(false)
+    }
     // Check if line index is greater than or equal to 8 and update the background image
     if (lineIndex >= 6) {
       setIsImageFading(true);
-    }
+    } 
   }, [lineIndex]);
 
   const generateText = (line) => {
@@ -45,6 +54,10 @@ function RightRoute() {
       setGeneratedText("");
     }
   };
+
+  const toSnakeGame = () => {
+    navigate("/snake");
+  }
 
   useEffect(() => {
     const audio = new Audio(new URL("./ScaryForest.mp3", import.meta.url));
@@ -99,6 +112,13 @@ function RightRoute() {
             {generatedText}
           </p>
         </div>
+      </div>
+      <div className="nextButtonContainer">
+            {showNextButton && (
+              <button className="nextButton" onClick={toSnakeGame}>
+                Next
+              </button>
+            )}
       </div>
     </div>
   );
