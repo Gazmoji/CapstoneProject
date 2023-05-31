@@ -145,6 +145,7 @@ function SnakeGame() {
       onKeyDown={(e) => moveSnake(e)}
     >
       <div className="score">Score: {score}</div>
+      <div className="attempts">Attempts Remaining: {attempts}</div>
       <canvas
         style={{ border: "3px solid black" }}
         ref={canvasRef}
