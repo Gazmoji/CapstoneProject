@@ -44,24 +44,6 @@ canvas {
   text-align: center;
 }
 
-<<<<<<< HEAD
-.gameWon p{
-    color: Green;
-    background-color: #555;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-radius: 5px;
-    margin: 5px auto;
-    margin-bottom: 10px;
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.attempts {
-    color: #fff;
-}
-=======
 .gameWon p {
   color: Green;
   background-color: #555;
@@ -93,4 +75,65 @@ canvas {
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
->>>>>>> refs/remotes/origin/main
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+.backgroundCave {
+    background-image: url("https://img.itch.zone/aW1hZ2UvNjMxMzc0LzMzNzEyMDkucG5n/original/eyVjcs.png");
+}
+
+.canvasWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    font-family: 'Orbitron', sans-serif;
+}
+
+canvas {
+    background-color: #333;
+    border-radius: 5px;
+    display: flex;
+}
+
+.snakeButton {
+    color: white;
+    background-color: #333;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #555;
+    font-size: 20px;
+    cursor: pointer
+}
+
+.gameOver {
+    color: Red;
+    font-size: 2em;
+    
+}
+
+.score {
+    color: #fff;
+    font-size: 2em;
+}
+
+.gameWon {
+text-align: center;
+}
+
+.gameWon p{
+    color: Green;
+    background-color: #555;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    margin: 5px auto;
+    margin-bottom: 10px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.attempts {
+    color: #fff;
+}
