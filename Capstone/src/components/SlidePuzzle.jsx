@@ -69,6 +69,13 @@ export default function App() {
   const [moves, setMoves] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(true);
 
+
+  useEffect(() => {
+    if (moves === 200) {
+      navigate('/GameOver')
+    }
+  })
+
   useEffect(() => {
     // Code related to audio playback
     const audio = new Audio(
