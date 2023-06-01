@@ -22,8 +22,8 @@ function SnakeGame() {
   const [applesCollected, setApplesCollected] = useState(0);
   const [score, setScore] = useState(0);
   const [gameWon, setGameWon] = useState(false);
-  const [showNextButton, setShowNextButton] = useState(true)
-  const [attempts, setAttempts] = useState(3)
+  const [showNextButton, setShowNextButton] = useState(true);
+  const [attempts, setAttempts] = useState(3);
   const [firstAttempt, setFirstAttempt] = useState(true);
   const [audioEnabled, setAudioEnabled] = useState(true);
   const navigate = useNavigate();
@@ -47,35 +47,35 @@ function SnakeGame() {
   }, [audioEnabled]);
 
   const startGame = () => {
-    setSnake(SNAKE_START)
-    setApple(APPLE_START)
-    setDir([0, -1])
-    setSpeed(SPEED)
-    setGameOver(false)
-    setApplesCollected(0)
-    setScore(0)
+    setSnake(SNAKE_START);
+    setApple(APPLE_START);
+    setDir([0, -1]);
+    setSpeed(SPEED);
+    setGameOver(false);
+    setApplesCollected(0);
+    setScore(0);
+  };
 
-  }
-  
   const endGame = () => {
-    setSpeed(null)
-    setGameOver(true)
-    setAttempts(prevAttempts => prevAttempts - 1)
-  }
-  
+    setSpeed(null);
+    setGameOver(true);
+    setAttempts((prevAttempts) => prevAttempts - 1);
+  };
+
   useEffect(() => {
     if (attempts === 0) {
-      navigate('/game-over')
+      navigate("/GameOver");
     } else if (attempts <= 2) {
-      setFirstAttempt(false)
+      setFirstAttempt(false);
     }
-  }, [attempts])
+  }, [attempts]);
 
-  const moveSnake = ({ keyCode }) => keyCode >= 37 && keyCode <= 40 && setDir(DIRECTIONS[keyCode])
-  
-  const createApple = () => 
-    apple.map((_, i) => Math.floor(Math.random() * (CANVAS_SIZE[i]) / SCALE));
-  
+  const moveSnake = ({ keyCode }) =>
+    keyCode >= 37 && keyCode <= 40 && setDir(DIRECTIONS[keyCode]);
+
+  const createApple = () =>
+    apple.map((_, i) => Math.floor((Math.random() * CANVAS_SIZE[i]) / SCALE));
+
   const checkCollision = (piece, snk = snake) => {
     if (
       piece[0] * SCALE >= CANVAS_SIZE[0] ||
@@ -172,7 +172,7 @@ function SnakeGame() {
           )}
         </button>
       </div>
-      <div className="dialogBox2">
+      <div className="dialogBox3">
         Instructions: Gather your belongings (The Red Dots) without hitting the
         wall or yourself (The Green Line) Reach a score of 2000 to proceed. But
         be warned, you only have 3 attempts.
@@ -187,9 +187,13 @@ function SnakeGame() {
         </div>
       )}
       {firstAttempt ? (
-        <button className='snakeButton' onClick={startGame}>Start Game</button>
+        <button className="snakeButton" onClick={startGame}>
+          Start Game
+        </button>
       ) : (
-        <button className='snakeButton' onClick={startGame}>Try Again</button>
+        <button className="snakeButton" onClick={startGame}>
+          Try Again
+        </button>
       )}
     </div>
   );
