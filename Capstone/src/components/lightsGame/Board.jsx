@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import Cell from './Cell'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPersonRunning } from '@fortawesome/free-solid-svg-icons'
 import "../../styles/lg.css"
-
+import { useNavigate } from 'react-router-dom'
 
 
 
 function Board(props) {
+
+    const navigate = useNavigate()
+
     const { size, chanceLightStartsOn } = props
 
     function randomLight() {
@@ -74,10 +79,19 @@ function Board(props) {
         )
     })
 
+    const finishGame = () => {
+        navigate('/')
+    }
+
   return (
     <div className='Board'>
         <h2 className="movesh2">Moves: {board.moves / 5}</h2>
-        {hasWon() ? <div className='Board-hasWon'>Congratulations!</div> : gridDisplay}
+        {hasWon() ? <div className='Board-hasWon'>
+            <h1>Congratulations!</h1>
+            <button className='escape' onClick = {finishGame} >
+                Escape  
+            <FontAwesomeIcon icon={faPersonRunning} />
+            </button></div> : gridDisplay}
     </div>
   )
 }
