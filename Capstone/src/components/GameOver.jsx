@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function GameOver() {
+function GameOver({ username }) {
   document.body.className = "gameOverBackground";
 
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function GameOver() {
         <img src="https://64.media.tumblr.com/4eb0459581136fef8e14aa175d80b5d5/tumblr_o45fddGcHq1thw08io1_250.gif" />
       </div>
       <ul>
-        <div className="placement2">Name: Filler</div>
+        <div className="placement2">Name: {username}</div>
         <div className="placement2">Ending: Probably Bad</div>
         <div className="placement2">Score: 200</div>
       </ul>

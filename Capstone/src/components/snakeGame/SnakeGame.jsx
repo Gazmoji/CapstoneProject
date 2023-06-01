@@ -134,7 +134,7 @@ function SnakeGame() {
   useInterval(() => gameLoop(), speed);
 
   const leaveCave = () => {
-    navigate("/");
+    navigate("/EscapeCave");
   };
 
   return (

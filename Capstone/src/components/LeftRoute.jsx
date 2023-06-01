@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LeftRoute() {
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -7,6 +8,7 @@ function LeftRoute() {
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
   const [shouldPlayAudio, setShouldPlayAudio] = useState(false); // New state variable
+  const navigate = useNavigate();
 
   const leftPath = [
     "You decide to continue on the path that looks like your previous route.",
@@ -23,6 +25,10 @@ function LeftRoute() {
     "*PUSH*",
     "Somebody shoves you off the cliff, leaving you to fall slowly to your demise...",
   ];
+
+  const gameOver = () => {
+    navigate("/GameOver");
+  };
 
   useEffect(() => {
     generateText(leftPath[lineIndex]);
@@ -110,6 +116,11 @@ function LeftRoute() {
           </p>
         </div>
       </div>
+      {lineIndex === leftPath.length - 1 && (
+        <button className="nextButton" onClick={gameOver}>
+          Fall to Your Doom
+        </button>
+      )}
     </div>
   );
 }

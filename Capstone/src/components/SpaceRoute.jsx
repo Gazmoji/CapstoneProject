@@ -56,7 +56,7 @@ function SpaceRoute() {
   }, [audioEnabled]);
 
   const handleClick = () => {
-    if (lineIndex < hospitalEnding.length - 1) {
+    if (lineIndex < spaceEnding.length - 1) {
       setLineIndex(lineIndex + 1);
       setGeneratedText("");
     }

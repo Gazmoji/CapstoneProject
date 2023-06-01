@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function HospitalRoute() {
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -6,6 +7,7 @@ function HospitalRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
+  const navigate = useNavigate();
 
   const hospitalEnding = [
     "After coming to the notion that it would be absurd to sneak into the space station, you make your way to the hospital.",
@@ -23,6 +25,10 @@ function HospitalRoute() {
       setIsImageFading(true);
     }
   }, [lineIndex]);
+
+  const gameOver = () => {
+    navigate("/GameOver");
+  };
 
   const generateText = (line) => {
     let currentIndex = 0;
@@ -97,6 +103,11 @@ function HospitalRoute() {
           </p>
         </div>
       </div>
+      {lineIndex === hospitalEnding.length - 1 && (
+        <button className="nextButton" onClick={gameOver}>
+          Bleed Out
+        </button>
+      )}
     </div>
   );
 }
