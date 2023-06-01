@@ -16,6 +16,7 @@ import RightRoute from "./components/RightRoute.jsx";
 import EscapeCave from "./components/EscapeCave.jsx";
 import GameOver from "./components/GameOver.jsx";
 import HospitalRoute from "./components/HospitalRoute.jsx";
+import SpaceRoute from "./components/SpaceRoute.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/snake" element={<SnakeGame />} />
         <Route path="/EscapeCave" element={<EscapeCave />} />
         <Route path="/HospitalRoute" element={<HospitalRoute />} />
+        <Route path="/SpaceRoute" element={<SpaceRoute />} />
         <Route path="/lights" element={<LightsGame />} />
       </Routes>
     </BrowserRouter>
