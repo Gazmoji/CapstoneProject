@@ -14,6 +14,7 @@ import LeftRoute from "./components/LeftRoute.jsx";
 import RightRoute from "./components/RightRoute.jsx";
 import EscapeCave from "./components/EscapeCave.jsx";
 import GameOver from "./components/GameOver.jsx";
+import EndingScreen from "./components/EndingScreen.jsx";
 import HospitalRoute from "./components/HospitalRoute.jsx";
 import SpaceRoute from "./components/SpaceRoute.jsx";
 import LightsGame from "./components/lightsGame/LightsGame.jsx";
@@ -22,7 +23,7 @@ import store from "./store/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store = { store }>
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -38,6 +39,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/snake" element={<SnakeGame />} />
           <Route path="/EscapeCave" element={<EscapeCave />} />
           <Route path="/HospitalRoute" element={<HospitalRoute />} />
+          <Route path="/EndingScreen" element={<EndingScreen />} />
           <Route path="/SpaceRoute" element={<SpaceRoute />} />
           <Route path="/lights" element={<LightsGame />} />
         </Routes>

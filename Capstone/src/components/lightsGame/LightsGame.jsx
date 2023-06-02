@@ -8,7 +8,7 @@ function LightsGame() {
     <div>
       <Board />
     </div>
-  )
+  );
 }
 
-export default LightsGame
+export default LightsGame;
