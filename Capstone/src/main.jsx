@@ -10,13 +10,13 @@ import CabinRoute from "./components/CabinRoute.jsx";
 import ForestRoute from "./components/ForestRoute.jsx";
 import SlidePuzzle from "./components/SlidePuzzle.jsx";
 import SnakeGame from "./components/snakeGame/SnakeGame.jsx";
-import LightsGame from "./components/lightsGame/LightsGame.jsx";
 import LeftRoute from "./components/LeftRoute.jsx";
 import RightRoute from "./components/RightRoute.jsx";
 import EscapeCave from "./components/EscapeCave.jsx";
 import GameOver from "./components/GameOver.jsx";
 import HospitalRoute from "./components/HospitalRoute.jsx";
 import SpaceRoute from "./components/SpaceRoute.jsx";
+import LightsGame from "./components/lightsGame/LightsGame.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 

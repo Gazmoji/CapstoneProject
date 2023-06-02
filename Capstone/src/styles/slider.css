@@ -5,6 +5,8 @@
 
 .moves {
   color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
 }
 
 .playButton {
