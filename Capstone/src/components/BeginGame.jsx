@@ -80,7 +80,7 @@ function BeginGame() {
           setGeneratedText(line + "\n\n" + option1 + "\n\n" + option2);
         }
       }
-    }, 40); // Adjust the interval speed as needed
+    }, 30); // Adjust the interval speed as needed
   };
 
   const handleClick = () => {
@@ -148,6 +148,13 @@ function BeginGame() {
           backgroundImage: isImageFading
             ? "url(https://media.tenor.com/9WBEzfL3eg4AAAAC/video-game-cabin.gif)" // Replace with the path to your new image
             : "none", // Replace with the path to your original image
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
         }}
       >
         <div className="placementButton2">

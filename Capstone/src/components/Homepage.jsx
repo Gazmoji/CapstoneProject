@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import titleImage from "./title.png";
-import "../styles/App.css";
+import "../styles/Homepage.css";
 
 function Homepage() {
   const navigate = useNavigate();

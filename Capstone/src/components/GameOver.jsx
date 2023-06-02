@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "../styles/GameOver.css";
 
 function GameOver({ username }) {
   document.body.className = "gameOverBackground";

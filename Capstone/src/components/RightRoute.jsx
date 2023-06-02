@@ -7,9 +7,9 @@ function RightRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
-  const [showNextButton, setShowNextButton] = useState(false)
+  const [showNextButton, setShowNextButton] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const rightPath = [
     "Throwing caution to the wind, you decide to go on the more dangerous looking path.",
@@ -28,12 +28,12 @@ function RightRoute() {
     if (lineIndex >= rightPath.length - 1) {
       setShowNextButton(true);
     } else {
-      setShowNextButton(false)
+      setShowNextButton(false);
     }
     // Check if line index is greater than or equal to 8 and update the background image
     if (lineIndex >= 6) {
       setIsImageFading(true);
-    } 
+    }
   }, [lineIndex]);
 
   const generateText = (line) => {
@@ -45,7 +45,7 @@ function RightRoute() {
       } else {
         clearInterval(interval);
       }
-    }, 40);
+    }, 30);
   };
 
   const handleClick = () => {
@@ -57,7 +57,7 @@ function RightRoute() {
 
   const toSnakeGame = () => {
     navigate("/snake");
-  }
+  };
 
   useEffect(() => {
     const audio = new Audio(new URL("./ScaryForest.mp3", import.meta.url));
@@ -82,13 +82,22 @@ function RightRoute() {
       style={{
         backgroundImage: isImageFading
           ? "url(https://img.itch.zone/aW1hZ2UvNjMxMzc0LzMzNzEyMDkucG5n/original/eyVjcs.png)" // Replace with the path to your new image
-          : "url(https://cdna.artstation.com/p/assets/images/images/002/287/548/large/sandrine-pilloud-160404-i3gamejam-forest.jpg?1459797887)", // Replace with the path to your original image
+          : "url(https://cdna.artstation.com/p/assets/images/images/002/287/548/large/sandrine-pilloud-160404-i3gamejam-forest.jpg?1459797887)",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
       }}
     >
       <div className="placementButton2">
         <button
           className="buttonAudio"
           onClick={() => setAudioEnabled((prevEnabled) => !prevEnabled)}
+          style={{ backgroundColor: "white" }}
         >
           {audioEnabled ? (
             <img
@@ -114,11 +123,11 @@ function RightRoute() {
         </div>
       </div>
       <div className="nextButtonContainer">
-            {showNextButton && (
-              <button className="nextButton" onClick={toSnakeGame}>
-                Next
-              </button>
-            )}
+        {showNextButton && (
+          <button className="nextButton" onClick={toSnakeGame}>
+            Next
+          </button>
+        )}
       </div>
     </div>
   );

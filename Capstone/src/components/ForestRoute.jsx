@@ -41,7 +41,7 @@ function ForestRoute() {
       } else {
         clearInterval(interval);
       }
-    }, 40); // Adjust the interval speed as needed
+    }, 30); // Adjust the interval speed as needed
   };
 
   const handleClick = () => {
@@ -93,8 +93,16 @@ function ForestRoute() {
       className={`container${isFading ? " fade-out" : ""}`}
       style={{
         backgroundImage: isImageFading
-          ? "url(https://preview.redd.it/enchanted-forest-past-poem-and-prompt-in-comments-v0-7wj8gos7hv9a1.png?width=640&crop=smart&auto=webp&s=839fa1ee011c7bef845d0194af9bc71cf82b37e0)" // Replace with the path to your new image
+          ? "url(https://cdnb.artstation.com/p/assets/images/images/037/263/051/original/karina-formanova-rainforest-animation.gif?1619929364)" // Replace with the path to your new image
           : "url(https://media.tenor.com/9WBEzfL3eg4AAAAC/video-game-cabin.gif)", // Replace with the path to your original image
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
       }}
     >
       <div className="placementButton2">
