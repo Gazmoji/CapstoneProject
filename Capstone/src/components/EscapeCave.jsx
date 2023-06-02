@@ -157,6 +157,9 @@ function EscapeCave() {
           left: 0,
           width: "100vw",
           height: "100vh",
+          transition: isImageFading
+            ? "background-image 0.1s ease-in-out"
+            : "none",
         }}
       >
         <div className="placementButton2">
