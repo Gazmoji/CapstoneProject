@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SpaceRoute() {
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -6,6 +7,9 @@ function SpaceRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
+  const [showButton, setShowButton] = useState(false)
+
+  const navigate = useNavigate()
 
   const spaceEnding = [
     "Knowing that the sensation of being pursued held more substance than mere intuition, you decided to sneak into the space station.",
@@ -56,11 +60,18 @@ function SpaceRoute() {
   }, [audioEnabled]);
 
   const handleClick = () => {
-    if (lineIndex < hospitalEnding.length - 1) {
+    if (lineIndex < spaceEnding.length - 1) {
       setLineIndex(lineIndex + 1);
       setGeneratedText("");
+      setShowButton(false)
+    } else {
+      setShowButton(true)
     }
   };
+
+  const next = () => {
+    navigate('/lights')
+  }
 
   return (
     <div
@@ -99,6 +110,7 @@ function SpaceRoute() {
           </p>
         </div>
       </div>
+        {showButton && <button className="nextButton" onClick = {next}>Next</button>}
     </div>
   );
 }

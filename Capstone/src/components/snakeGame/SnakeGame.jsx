@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import "../../styles/snake.css";
 import { useInterval } from "./useInterval";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { upScore } from "../../store/slices/userSlice";
 import {
   CANVAS_SIZE,
   SNAKE_START,
@@ -27,6 +29,7 @@ function SnakeGame() {
   const [firstAttempt, setFirstAttempt] = useState(true);
   const [audioEnabled, setAudioEnabled] = useState(true);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Code related to audio playback
@@ -134,7 +137,8 @@ function SnakeGame() {
   useInterval(() => gameLoop(), speed);
 
   const leaveCave = () => {
-    navigate("/");
+    dispatch(upScore(score))
+    navigate("/EscapeCave");
   };
 
   return (

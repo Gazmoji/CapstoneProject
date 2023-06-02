@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { upScore } from "../store/slices/userSlice";
 import "../styles/slider.css";
 
 const getShuffledPuzzle = () => {
@@ -68,7 +70,9 @@ export default function App() {
   const [complete, setComplete] = useState(false);
   const [moves, setMoves] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(true);
+  const [score, setScore] = useState(0)
 
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (moves === 200) {
@@ -139,6 +143,17 @@ export default function App() {
   const checkCompletion = (puzzle) => {
     if (flattenArray(puzzle).join("") === "123456780") {
       setComplete(true);
+      let score = 0;
+      if (moves < 50) {
+        score = 1000;
+      } else if (moves < 100) {
+        score = 750;
+      } else if (moves < 150) {
+        score = 500;
+      } else if (moves < 200) {
+        score = 250;
+      }
+      setScore(score);
     }
   };
 
@@ -164,6 +179,7 @@ export default function App() {
   const navigate = useNavigate();
 
   const leaveCabin = () => {
+    dispatch(upScore(score))
     navigate("/ForestRoute");
   };
 

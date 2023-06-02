@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setName } from "../store/slices/userSlice";
 import "../styles/App.css";
 
 function NewGame() {
@@ -8,35 +10,26 @@ function NewGame() {
   const [username, setUsername] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const dispatch = useDispatch()
+
   const returnBack = () => {
     navigate("/");
   };
 
+
+
   const beginAdventure = () => {
     if (username.trim() === "") {
       setErrorMessage("Please enter a username");
+    } else if (username.length <= 3) {
+      setErrorMessage("Username must be at least 3 characters");
     } else {
-      // Make a POST request to add the username to the leaderboard
-      fetch("http://localhost:8080/leaderboard", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: username,
-          ending: "Incomplete",
-          score: 0,
-        }),
-      })
-        .then((response) => response.json())
-        .then((leaderboard) => {
-          navigate("/game");
-        })
-        .catch((error) => {
-          console.error("Error adding username to leaderboard:", error);
-        });
+      dispatch(setName(username))
+      navigate("/game")
     }
   };
+
+
 
   const handleInputChange = (event) => {
     setUsername(event.target.value);
