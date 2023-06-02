@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function HospitalRoute() {
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -6,6 +7,7 @@ function HospitalRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
+  const navigate = useNavigate();
 
   const hospitalEnding = [
     "After coming to the notion that it would be absurd to sneak into the space station, you make your way to the hospital.",
@@ -24,6 +26,10 @@ function HospitalRoute() {
     }
   }, [lineIndex]);
 
+  const gameOver = () => {
+    navigate("/GameOver");
+  };
+
   const generateText = (line) => {
     let currentIndex = 0;
     const interval = setInterval(() => {
@@ -33,11 +39,11 @@ function HospitalRoute() {
       } else {
         clearInterval(interval);
       }
-    }, 40);
+    }, 30);
   };
 
   useEffect(() => {
-    const audio = new Audio(new URL("./ChasingMusic.mp3", import.meta.url));
+    const audio = new Audio(new URL("./HospitalRoute.mp3", import.meta.url));
     audio.loop = true;
 
     if (audioEnabled) {
@@ -65,8 +71,16 @@ function HospitalRoute() {
       className={`container${isFading ? " fade-out" : ""}`}
       style={{
         backgroundImage: isImageFading
-          ? "url(https://preview.redd.it/6g0zbuqorrk11.jpg?auto=webp&s=4bd8eb886c689283603f412478ddf3384e8c3ef3)" // Replace with the path to your new image
-          : "url(https://preview.redd.it/enchanted-forest-past-poem-and-prompt-in-comments-v0-7wj8gos7hv9a1.png?width=640&crop=smart&auto=webp&s=839fa1ee011c7bef845d0194af9bc71cf82b37e0)", // Replace with the path to your original image
+          ? "url(https://rare-gallery.com/mocahbig/429744-pixel-art-artwork-hospital-night-bed-dark-blue.png)" // Replace with the path to your new image
+          : "url(https://64.media.tumblr.com/b65eedc97eb1027416bed49e6084ac27/458ad748cd699f0d-14/s1280x1920/adc3bee361684e42df06c46c5eb12733747cf170.gif)", // Replace with the path to your original image
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
       }}
     >
       <div className="placementButton2">
@@ -97,6 +111,11 @@ function HospitalRoute() {
           </p>
         </div>
       </div>
+      {lineIndex === hospitalEnding.length - 1 && (
+        <button className="nextButton" onClick={gameOver}>
+          Bleed Out
+        </button>
+      )}
     </div>
   );
 }

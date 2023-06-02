@@ -81,7 +81,7 @@ function EscapeCave() {
           setGeneratedText(line + "\n\n" + option1 + "\n\n" + option2);
         }
       }
-    }, 40); // Adjust the interval speed as needed
+    }, 30); // Adjust the interval speed as needed
   };
 
   const handleClick = () => {
@@ -147,11 +147,16 @@ function EscapeCave() {
         className={`container${isFading ? " fade-out" : ""}`}
         style={{
           backgroundImage: isImageFading
-            ? "url(https://imagedelivery.net/9sCnq8t6WEGNay0RAQNdvQ/cle80k6ku000ijy08sf1r1oap_3/public)" // Replace with the path to your new image
-            : "url(https://imagedelivery.net/9sCnq8t6WEGNay0RAQNdvQ/cle95d7sr0001l708vzdeczos_1/public)", // Replace with the path to your original image
-          backgroundSize: "cover", // This will make the background image cover the entire container
-          backgroundPosition: "center", // This will center the background image within the container
+            ? "url(https://64.media.tumblr.com/b65eedc97eb1027416bed49e6084ac27/458ad748cd699f0d-14/s1280x1920/adc3bee361684e42df06c46c5eb12733747cf170.gif)" // Replace with the path to your new image
+            : "url(https://i.redd.it/vk6ujipz1n951.gif)", // Replace with the path to your original image
+          backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
         }}
       >
         <div className="placementButton2">

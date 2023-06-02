@@ -7,13 +7,13 @@ function CabinRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
-  const [showButton, setShowButton] = useState(false)
+  const [showButton, setShowButton] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const unlockDoor = () => {
-    navigate("/slider")
-  }
+    navigate("/slider");
+  };
 
   const cabinOption = [
     "You decide that going into the cabin couldn't hurt, there could be someone there to help.",
@@ -38,16 +38,16 @@ function CabinRoute() {
       } else {
         clearInterval(interval);
       }
-    }, 40); // Adjust the interval speed as needed
+    }, 30); // Adjust the interval speed as needed
   };
 
   const handleClick = () => {
     if (lineIndex < cabinOption.length - 1) {
       setLineIndex(lineIndex + 1);
       setGeneratedText("");
-      setShowButton(false)
+      setShowButton(false);
     } else {
-      setShowButton(true)
+      setShowButton(true);
     }
   };
 
@@ -90,6 +90,14 @@ function CabinRoute() {
         backgroundImage: isImageFading
           ? "url(https://as1.ftcdn.net/v2/jpg/05/50/46/44/1000_F_550464425_V6RGtdUQjCBNzj9tOyeBtx8dB1bEMIn8.jpg)" // Replace with the path to your new image
           : "url(https://media.tenor.com/9WBEzfL3eg4AAAAC/video-game-cabin.gif)", // Replace with the path to your original image
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
       }}
     >
       <div className="placementButton2">
@@ -120,10 +128,11 @@ function CabinRoute() {
         </div>
       </div>
 
-            {showButton && (
-              <button className="nextButton" onClick={unlockDoor} >Try to Unlock Door</button>
-            )}
-
+      {showButton && (
+        <button className="nextButton" onClick={unlockDoor}>
+          Try to Unlock Door
+        </button>
+      )}
     </div>
   );
 }

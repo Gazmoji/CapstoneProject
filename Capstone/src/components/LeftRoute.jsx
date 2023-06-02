@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LeftRoute() {
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -7,6 +8,7 @@ function LeftRoute() {
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
   const [shouldPlayAudio, setShouldPlayAudio] = useState(false); // New state variable
+  const navigate = useNavigate();
 
   const leftPath = [
     "You decide to continue on the path that looks like your previous route.",
@@ -23,6 +25,10 @@ function LeftRoute() {
     "*PUSH*",
     "Somebody shoves you off the cliff, leaving you to fall slowly to your demise...",
   ];
+
+  const gameOver = () => {
+    navigate("/GameOver");
+  };
 
   useEffect(() => {
     generateText(leftPath[lineIndex]);
@@ -46,7 +52,7 @@ function LeftRoute() {
       } else {
         clearInterval(interval);
       }
-    }, 40);
+    }, 30);
   };
 
   const handleClick = () => {
@@ -78,8 +84,16 @@ function LeftRoute() {
       className={`container${isFading ? " fade-out" : ""}`}
       style={{
         backgroundImage: isImageFading
-          ? "url(https://preview.redd.it/6g0zbuqorrk11.jpg?auto=webp&s=4bd8eb886c689283603f412478ddf3384e8c3ef3)" // Replace with the path to your new image
-          : "url(https://preview.redd.it/enchanted-forest-past-poem-and-prompt-in-comments-v0-7wj8gos7hv9a1.png?width=640&crop=smart&auto=webp&s=839fa1ee011c7bef845d0194af9bc71cf82b37e0)", // Replace with the path to your original image
+          ? "url(https://24.media.tumblr.com/tumblr_m6fc6mFKsG1qbzzgco1_r1_1280.png)" // Replace with the path to your new image
+          : "url(https://cdnb.artstation.com/p/assets/images/images/037/263/051/original/karina-formanova-rainforest-animation.gif?1619929364)", // Replace with the path to your original image
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
       }}
     >
       <div className="placementButton2">
@@ -110,6 +124,11 @@ function LeftRoute() {
           </p>
         </div>
       </div>
+      {lineIndex === leftPath.length - 1 && (
+        <button className="nextButton" onClick={gameOver}>
+          Fall to Your Doom
+        </button>
+      )}
     </div>
   );
 }
