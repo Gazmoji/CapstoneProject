@@ -7,9 +7,9 @@ function SpaceRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
-  const [showButton, setShowButton] = useState(false)
+  const [showButton, setShowButton] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const spaceEnding = [
     "Knowing that the sensation of being pursued held more substance than mere intuition, you decided to sneak into the space station.",
@@ -43,7 +43,7 @@ function SpaceRoute() {
   };
 
   useEffect(() => {
-    const audio = new Audio(new URL("./SpaceRoute.mp3", import.meta.url));
+    const audio = new Audio(new URL("./Suspense.mp3", import.meta.url));
     audio.loop = true;
 
     if (audioEnabled) {
@@ -63,15 +63,15 @@ function SpaceRoute() {
     if (lineIndex < spaceEnding.length - 1) {
       setLineIndex(lineIndex + 1);
       setGeneratedText("");
-      setShowButton(false)
+      setShowButton(false);
     } else {
-      setShowButton(true)
+      setShowButton(true);
     }
   };
 
   const next = () => {
-    navigate('/lights')
-  }
+    navigate("/lights");
+  };
 
   return (
     <div
@@ -118,7 +118,11 @@ function SpaceRoute() {
           </p>
         </div>
       </div>
-        {showButton && <button className="nextButton" onClick = {next}>Next</button>}
+      {showButton && (
+        <button className="nextButton" onClick={next}>
+          Next
+        </button>
+      )}
     </div>
   );
 }
