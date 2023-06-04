@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit"
 
 
 const initialState = {
-
     name: 'Default',
     ending: 'none',
     score: 0

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { upScore } from "../store/slices/userSlice";
+import { upScore, setEnding } from "../store/slices/userSlice";
 import "../styles/slider.css";
 
 const getShuffledPuzzle = () => {
@@ -71,11 +71,13 @@ export default function App() {
   const [moves, setMoves] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(true);
   const [score, setScore] = useState(0)
+  const [sliderEnding, setSliderEnding] = useState('Died in Cabin')
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (moves === 200) {
+    if (moves === 10) {
+      dispatch(setEnding(sliderEnding))
       navigate('/GameOver')
     }
   })
@@ -179,6 +181,7 @@ export default function App() {
   const navigate = useNavigate();
 
   const leaveCabin = () => {
+    dispatch(setEnding(sliderEnding))
     dispatch(upScore(score))
     navigate("/ForestRoute");
   };
