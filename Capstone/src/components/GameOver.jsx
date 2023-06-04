@@ -4,15 +4,35 @@ import "../styles/GameOver.css";
 
 function GameOver() {
   document.body.className = "gameOverBackground";
-  const score = useSelector((state) => state.user.score)
-  const ending = useSelector((state) => state.user.ending)
-  const name = useSelector((state) => state.user.name)
-
+  const score = useSelector((state) => state.user.score);
+  const ending = useSelector((state) => state.user.ending);
+  const name = useSelector((state) => state.user.name);
 
   const navigate = useNavigate();
-  const returnBack = () => {
-    navigate("/");
+  const returnBack = async () => {
+    const leaderboardData = {
+      name: name,
+      ending: ending,
+      score: score,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/leaderboard", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(leaderboardData),
+      });
+
+      if (response.ok) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error updating leaderboard:", error);
+    }
   };
+
   return (
     <>
       <h1 className="GameOver">Game Over</h1>

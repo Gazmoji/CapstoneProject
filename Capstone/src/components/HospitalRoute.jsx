@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { setEnding } from "../store/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 function HospitalRoute() {
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -7,7 +9,9 @@ function HospitalRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
+  const [hosEnding, setHosEnding] = useState("Stabbed to Death");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const hospitalEnding = [
     "After coming to the notion that it would be absurd to sneak into the space station, you make your way to the hospital.",
@@ -27,6 +31,7 @@ function HospitalRoute() {
   }, [lineIndex]);
 
   const gameOver = () => {
+    dispatch(setEnding(hosEnding));
     navigate("/GameOver");
   };
 

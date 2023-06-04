@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { setEnding } from "../store/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 function LeftRoute() {
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -7,8 +9,10 @@ function LeftRoute() {
   const [generatedText, setGeneratedText] = useState("");
   const [isFading, setIsFading] = useState(false);
   const [isImageFading, setIsImageFading] = useState(false);
-  const [shouldPlayAudio, setShouldPlayAudio] = useState(false); // New state variable
+  const [shouldPlayAudio, setShouldPlayAudio] = useState(false);
+  const [leftEnding, setleftEnding] = useState("Fell off Cliff");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const leftPath = [
     "You decide to continue on the path that looks like your previous route.",
@@ -27,6 +31,7 @@ function LeftRoute() {
   ];
 
   const gameOver = () => {
+    dispatch(setEnding(leftEnding));
     navigate("/GameOver");
   };
 
