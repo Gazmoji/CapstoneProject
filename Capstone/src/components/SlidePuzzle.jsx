@@ -70,17 +70,17 @@ export default function App() {
   const [complete, setComplete] = useState(false);
   const [moves, setMoves] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(true);
-  const [score, setScore] = useState(0)
-  const [sliderEnding, setSliderEnding] = useState('Died in Cabin')
+  const [score, setScore] = useState(0);
+  const [sliderEnding, setSliderEnding] = useState("Died in Cabin");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (moves === 10) {
-      dispatch(setEnding(sliderEnding))
-      navigate('/GameOver')
+    if (moves === 200) {
+      dispatch(setEnding(sliderEnding));
+      navigate("/GameOver");
     }
-  })
+  });
 
   useEffect(() => {
     // Code related to audio playback
@@ -181,8 +181,8 @@ export default function App() {
   const navigate = useNavigate();
 
   const leaveCabin = () => {
-    dispatch(setEnding(sliderEnding))
-    dispatch(upScore(score))
+    dispatch(setEnding(sliderEnding));
+    dispatch(upScore(score));
     navigate("/ForestRoute");
   };
 
