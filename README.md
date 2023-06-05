@@ -4,9 +4,10 @@ Hello World is a full stack application that combines a visual novel storytellin
 
 ## **Features:**
 
-Visual Novel Storytelling: Dive into an immersive story-driven experience as you guide the protagonist through a series of choices and encounters.
+### **Visual Novel Storytelling:** 
+Dive into an immersive story-driven experience as you guide the protagonist through a series of choices and encounters.
 
-## **Three Mini-Games:**
+### **Three Mini-Games:**
 
 **Slider Puzzle:** Solve a classic slider puzzle by rearranging the scrambled pieces to form a complete image.
 
