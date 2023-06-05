@@ -89,7 +89,7 @@ function SpaceRoute() {
         width: "100vw",
         height: "100vh",
         transition: isImageFading
-          ? "background-image 0.1s ease-in-out"
+          ? "background-image 0.0s ease-in-out"
           : "none",
       }}
     >

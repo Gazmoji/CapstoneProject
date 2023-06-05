@@ -98,6 +98,9 @@ function CabinRoute() {
         left: 0,
         width: "100vw",
         height: "100vh",
+        transition: isImageFading
+          ? "background-image 0.0s ease-in-out"
+          : "none",
       }}
     >
       <div className="placementButton2">

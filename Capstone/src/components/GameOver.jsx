@@ -1,14 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import "../styles/GameOver.css";
 
 function GameOver() {
-  document.body.className = "gameOverBackground";
   const score = useSelector((state) => state.user.score);
   const ending = useSelector((state) => state.user.ending);
   const name = useSelector((state) => state.user.name);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.body.className = "gameOverBackground";
+    return () => {
+      document.body.className = "";
+    };
+  }, []);
+
   const returnBack = async () => {
     const leaderboardData = {
       name: name,

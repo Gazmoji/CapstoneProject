@@ -26,7 +26,7 @@ function EscapeCave() {
       setGeneratedText("");
       generateText(cityIntro[0]);
       setLineIndex(escapeCave.length);
-    }, 1000); // Adjust the duration of the fade effect (in milliseconds)
+    }, 1000);
   };
 
   useEffect(() => {
