@@ -4,7 +4,7 @@ import { faPersonRunning } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "../../styles/styles.css";
-import { upScore } from "../../store/slices/userSlice";
+import { upScore, setEnding } from "../../store/slices/userSlice";
 
 const Board = () => {
   document.body.className = "spaceBackground";
@@ -16,6 +16,7 @@ const Board = () => {
   const [moves, setMoves] = useState(0);
   const [score, setScore] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(true);
+  const [finalEnding, setFinalEnding] = useState("You Escaped");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -87,6 +88,7 @@ const Board = () => {
 
   const finishGame = () => {
     dispatch(upScore(score));
+    dispatch(setEnding(finalEnding));
     navigate("/endingScreen");
   };
 
