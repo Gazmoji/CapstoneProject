@@ -25,13 +25,16 @@ function GameOver() {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/leaderboard", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(leaderboardData),
-      });
+      const response = await fetch(
+        "https://helloworld-0zpo.onrender.com/leaderboard",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(leaderboardData),
+        }
+      );
 
       if (response.ok) {
         navigate("/");

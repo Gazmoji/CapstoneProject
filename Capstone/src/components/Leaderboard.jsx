@@ -12,7 +12,9 @@ function Leaderboard() {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch("http://localhost:8080/leaderboard");
+        const response = await fetch(
+          "https://helloworld-0zpo.onrender.com/leaderboard"
+        );
         const data = await response.json();
         setLeaderboard(data);
       } catch (error) {
