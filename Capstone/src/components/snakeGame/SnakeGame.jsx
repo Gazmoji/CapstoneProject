@@ -104,7 +104,7 @@ function SnakeGame() {
       setApple(newApple);
       setApplesCollected((prev) => prev + 1);
       setScore((prev) => prev + 100);
-      if (applesCollected === 19) {
+      if (applesCollected === 9) {
         setGameWon(true);
       }
       return true;
@@ -120,7 +120,7 @@ function SnakeGame() {
     if (!checkAppleCollision(snakeCopy)) snakeCopy.pop();
     setSnake(snakeCopy);
 
-    if (applesCollected === 10) {
+    if (applesCollected === 20) {
       endGame();
     }
   };
