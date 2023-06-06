@@ -120,7 +120,7 @@ function SnakeGame() {
     if (!checkAppleCollision(snakeCopy)) snakeCopy.pop();
     setSnake(snakeCopy);
 
-    if (applesCollected === 20) {
+    if (applesCollected === 10) {
       endGame();
     }
   };
