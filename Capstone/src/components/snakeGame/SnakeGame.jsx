@@ -104,7 +104,7 @@ function SnakeGame() {
       setApple(newApple);
       setApplesCollected((prev) => prev + 1);
       setScore((prev) => prev + 100);
-      if (applesCollected === 19) {
+      if (applesCollected === 9) {
         setGameWon(true);
       }
       return true;
