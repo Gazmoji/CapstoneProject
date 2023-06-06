@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import "../../styles/snake.css";
 import { useInterval } from "./useInterval";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { upScore } from "../../store/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setEnding, upScore } from "../../store/slices/userSlice";
 import {
   CANVAS_SIZE,
   SNAKE_START,
@@ -28,6 +28,7 @@ function SnakeGame() {
   const [attempts, setAttempts] = useState(3);
   const [firstAttempt, setFirstAttempt] = useState(true);
   const [audioEnabled, setAudioEnabled] = useState(true);
+  const [snakeEnding, setSnakeEnding] = useState('Died in Cave')
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -67,6 +68,7 @@ function SnakeGame() {
 
   useEffect(() => {
     if (attempts === 0) {
+      dispatch(setEnding(snakeEnding))
       navigate("/GameOver");
     } else if (attempts <= 2) {
       setFirstAttempt(false);
@@ -138,6 +140,7 @@ function SnakeGame() {
 
   const leaveCave = () => {
     dispatch(upScore(score))
+    dispatch(setEnding(snakeEnding))
     navigate("/EscapeCave");
   };
 

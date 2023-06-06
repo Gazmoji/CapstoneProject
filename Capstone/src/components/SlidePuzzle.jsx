@@ -76,7 +76,7 @@ export default function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (moves === 10) {
+    if (moves === 200) {
       dispatch(setEnding(sliderEnding))
       navigate('/GameOver')
     }
