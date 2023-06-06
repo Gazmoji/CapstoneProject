@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import "../styles/GameOver.css";
 
 function EndingScreen() {
@@ -8,6 +9,13 @@ function EndingScreen() {
   const ending = useSelector((state) => state.user.ending)
   const name = useSelector((state) => state.user.name)
 
+
+  useEffect(() => {
+    document.body.className = "gameOverBackground";
+    return () => {
+      document.body.className = "";
+    };
+  }, []);
 
   const navigate = useNavigate();
   const returnBack = async () => {
