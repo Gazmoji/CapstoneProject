@@ -1,14 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import "../styles/GameOver.css";
 
 function GameOver() {
-  document.body.className = "gameOverBackground";
   const score = useSelector((state) => state.user.score);
   const ending = useSelector((state) => state.user.ending);
   const name = useSelector((state) => state.user.name);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.body.className = "gameOverBackground";
+    return () => {
+      document.body.className = "";
+    };
+  }, []);
+
   const returnBack = async () => {
     const leaderboardData = {
       name: name,
@@ -17,13 +25,16 @@ function GameOver() {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/leaderboard", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(leaderboardData),
-      });
+      const response = await fetch(
+        "https://helloworld-0zpo.onrender.com/leaderboard",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(leaderboardData),
+        }
+      );
 
       if (response.ok) {
         navigate("/");

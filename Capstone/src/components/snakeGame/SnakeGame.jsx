@@ -28,12 +28,11 @@ function SnakeGame() {
   const [attempts, setAttempts] = useState(3);
   const [firstAttempt, setFirstAttempt] = useState(true);
   const [audioEnabled, setAudioEnabled] = useState(true);
-  const [snakeEnding, setSnakeEnding] = useState('Died in Cave')
+  const [snakeEnding, setSnakeEnding] = useState("Crushed In Cave");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Code related to audio playback
     const audio = new Audio(new URL("./CaveGame.mp3", import.meta.url));
     audio.loop = true;
 
